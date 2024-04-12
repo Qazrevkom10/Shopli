@@ -1,0 +1,36 @@
+<!--
+    Главная страница магазина.
+-->
+<!DOCTYPE html>
+<html lang="en"
+	  th:replace="_layouts/frontend/template :: frontend(~{::menu}, ~{::content})"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+	<title>Page Title</title>
+</head>
+<body>
+
+<menu>
+	<div th:insert="~{_layouts/frontend/menu :: menu}">main menu</div>
+</menu>
+
+<content>
+
+
+	<div class="region-preview-container">
+		<div class="regionBox" th:each="region : ${regions}">
+			<a th:href="@{'/regions/' + ${region.id}}">
+				<span th:classappend="'regionLabel scheme-' + ${region.color}"></span>
+				<span class="regionLabelText">
+					<span class="regionTitle" th:text="${region.name}">region.name</span>
+					<br><span th:text="${region.subtitle}">region.subtitle</span>
+				</span>
+				<img class="regionImage img-responsive" th:src="@{'img/regions/' + ${region.name} + '-preview.jpg'}"/>
+			</a>
+		</div>
+	</div>
+</content>
+</body>
+</html>
